@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 20:38:35 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/01/31 20:57:31 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:11:37 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		del(past->content);
 		free(past);
 	}
-	*lst = 	NULL;
+	*lst = NULL;
 	return ;
 }

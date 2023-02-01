@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 09:54:30 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/01/30 19:43:51 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:50:46 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (!s || !fd)
+	if (!s)
 		return ;
-	write(fd, ft_strjoin(s, "\n"), ft_strlen(s) + 1);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 	return ;
 }

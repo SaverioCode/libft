@@ -6,7 +6,7 @@
 /*   By: fgarzi-c <fgarzi-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 22:18:40 by fgarzi-c          #+#    #+#             */
-/*   Updated: 2023/02/01 00:45:11 by fgarzi-c         ###   ########.fr       */
+/*   Updated: 2023/02/01 20:31:49 by fgarzi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*newlst;
+	t_list	*head;
 	t_list	*current;
 
-	if (!lst || !f || !del)
+	if (!lst || !f || !del || !(lst->content))
 		return (NULL);
-	newlst = malloc(sizeof(t_list));
-	newlst = ft_lstnew(lst->content);
-	f(newlst->content);
-	del(lst->content);
-	if (!lst->next)
-		return (newlst);
-	current = lst->next;
-	newlst->next = current;
-	ft_lstdelone(lst, del);
-	// while (current->next)
-	// {
-	// 	current = 
-	// 	lst = lst->next;
-	// }
-	return (newlst);
+	current = ft_lstnew(f(lst->content));
+	head = current;
+	if (!(lst->next))
+		return (current);
+	while (lst->next)
+	{
+		lst = lst->next;
+		if (!(lst->content))
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		current->next = ft_lstnew(f(lst->content));
+		current = current->next;
+	}
+	current->next = NULL;
+	return (head);
 }
